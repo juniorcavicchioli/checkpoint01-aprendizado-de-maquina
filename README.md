@@ -34,14 +34,15 @@ Comecei pela exploração dos dados. Carreguei o arquivo usando o pandas e respo
 
 **2. Cite 2 cenários que podem fazer sentido na leitura dos dados apresentados.**
 1. Eu acho que o imóvel fica mais caro de acordo com o tamanho.
-2. Eu ahco que um imóvel com mais garagens fica mais caro.
+2. Eu acho que um imóvel fica mais caro quando tem mais garagens.
+
 _(ambas afirmações foram testadas a frente)_
 
 ### Análise descritiva dos dados
 ---
-O segundo passo foi a análise exploratória. Uzando de gráficos e tabelas, tentei verificar se as minhas hipóteses estavam corretas.
+O segundo passo foi a análise exploratória. Usando de gráficos e tabelas, tentei verificar se as minhas hipóteses estavam corretas.
 
-Primeiro, verifiquei que haviam dados nulos nas colunas de valor e reformado. Para polir o dataset, removi ambas as linhas com dados faltantes.
+Primeiro, percebi que haviam dados nulos nas colunas de valor e reformado. Para polir o dataset, removi ambas as linhas com dados faltantes.
 
 Depois, imprimi um boxplot junto de uma impressão de listas para identificar os outliers do dataset.
 ```
@@ -73,7 +74,7 @@ Pauliceia|2
 Jordanopolis|1
 Piraporinha|1
 
-Através dos gráficos de dispersão e correlação, pude confirmar minhas hipóteses. O gráfico de correlação indica `0.8` de relação entre `valor` e `vagas` e `0.92` entre `valor` e `metros`. Isso significa que conforme o preço de um imóvel almenta, o número de vagas e a metragem aumentam e vice-versa. Isso é vísivel no gráfico de disperção, que mostra uma linearidade positiva.
+Através dos gráficos de dispersão e correlação, pude confirmar minhas hipóteses. O gráfico de correlação indica `0.8` de relação entre `valor` e `vagas` e `0.92` entre `valor` e `metros`. Isso significa que conforme o preço de um imóvel aumenta, o número de vagas e a metragem aumentam e vice-versa. Isso é vísivel no gráfico de disperção, que mostra uma linearidade positiva.
 
 _Cores diferentas apenas para vizualização_
 
@@ -88,20 +89,24 @@ E após a análise, respondi a pergunta do professor sobre os outliers:
 
 Interpretando o box plot, vemos que existem 1 outlier para `metros` e 3 para `vagas`.
 
-Expandindo a tabela do `df` vemos que outliers de metros é um dos outliers de vagas. Também é possível descobrir facilmente que o `Jardim do Mar` que possui apenas 2 ocorrencias no dataframe faz parte dos outliers restantes de vagas e que todos esses outliers são possuem valores altos (porém não discrepantes) em outras colunas também.
+Expandindo a tabela do `df` (dataframe) vemos que o outlier de metros é um outlier em comum com vagas. Também é possível descobrir facilmente que o `Jardim do Mar` que possui apenas 2 ocorrencias no dataframe faz parte dos outliers restantes de vagas e que todos esses outliers possuem valores altos (porém não discrepantes) em outras colunas também.
 
 Decidi remover apenas o outlier de metros por ser uma ocorrencia única e ser o valor mais alto existente em todos as colunas e manter os outliers das vagas para não perder completamente todos os valores altos que temos no dataset junto com os únicos valores para o bairro Jardim do Mar.
 
 ### Desenvolvimento do modelo
-Agora iniciei a modelagem escolhendo quais modelos eu usária para fazer a predição. Novamente, respondi as perguntas feitas pelo professor:
+---
+
+Iniciei a modelagem escolhendo quais modelos eu usária para fazer a predição. Novamente, respondi as perguntas feitas pelo professor:
 
 **4. O conjunto de dados indica a aplicação de qual modelo de aprendizagem de maquina para determinação do valor de um imóvel? Por que?**
 
-O aprendizado supervisionado é melhor. Temos os valores de entrada e exemplos do valor de saída desejado. No caso, os valores: metros, vagas, quartos, reformado e o bairro são as entradas e desejamos que a nossa máquina seja capaz de prever o valor, que já possuimos exemplos de saída que usaremos para treinar o modelo.
+O aprendizado supervisionado é melhor. Temos os valores de entrada e exemplos do valor de saída desejado. No caso, os valores: metros, vagas, quartos, reformado e o bairro são as entradas e desejamos que a nossa máquina seja capaz de prever o valor, que já possuimos exemplos de saída os quais usaremos para treinar o modelo.
 
 **5. Qual a técnica sugerida para este projeto?**
 [X] Regressão
+
 [ ] Classificação
+
 [ ] Clusterização
 
 **6. Escolha 2 modelos de algoritmos para testar a performance de cada um deles.**
@@ -116,7 +121,7 @@ Pela interpretação dos gráficos, existe uma linearidade. Então escolhi:
 
 ### Treinamento e teste do modelo
 ---
-O primeiro passo que tomei foi transformar em dummies os bairros pois os algoritmos que eu usei lidam melhor com números. Esse método transforma os bairros em colunas e dão a eles valores de 0 (falso) e 1 (verdadeiro). Assim o algoritmo consegue entender qual bairro é o pertencente aquela linha enuqanto trabalha exclusivamente com números.
+O primeiro passo que tomei foi transformar em dummies os bairros pois os algoritmos que usei lidam melhor com números. Esse método transforma os bairros em colunas e dão a eles valores de 0 (falso) e 1 (verdadeiro). Assim o algoritmo consegue entender qual bairro é o pertencente aquela linha enquanto trabalha exclusivamente com números.
 
 Então separei os dados para treino e teste. Variei nas proporções durante minha análise como explico no próximo passo.
 
@@ -138,7 +143,7 @@ Após rodar sem `random_state` definido várias vezes, percebi que o valor de R2
 |-|-|-|-|*Diferença média = 0.069*|
 
 #### Algoritmo 2 - Random forest regressor
-Primeiro, comparei o número de árvores para identificar se existiam uma faixa de quantidade que fosse melhor. A relação que encontrei é a de que, conforme o número de árvores cresce, o resultado começa a ficar igual.
+Primeiro, comparei o número de árvores para identificar se existia uma faixa de quantidade que fosse melhor. A relação que encontrei é a de que, conforme o número de árvores cresce, o resultado começa a ficar igual.
 |`n_estimators`|R2_treino|R2_teste|
 |:-:|:-:|:-:|
 |10|0.95|0.77|
@@ -147,7 +152,7 @@ Primeiro, comparei o número de árvores para identificar se existiam uma faixa 
 |200|0.96|0.80|
 |*`random_state` da divisão = 100*|
 
-Depois fiz a mesma comapração que com o primeiro algoritmo, porém variando somente o `random_state` e não mais o `test_size`.
+Depois fiz a mesma comparação que fiz no primeiro algoritmo, porém variando somente o `random_state` e não mais o `test_size`.
 
 |`random_state`|RS_treino|RS_teste|Diferença|
 |:-:|:-:|:-:|:-:|
