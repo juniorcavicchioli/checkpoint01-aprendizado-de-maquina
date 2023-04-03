@@ -204,4 +204,4 @@ Feito por [@juniorcavicchioli](https://github.com/juniorcavicchioli?tab=reposito
 LinkedIn: [Adilson Roberto Cavicchioli Junior](https://www.linkedin.com/in/adilson-roberto-cavicchioli-junior-6816b7192?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BIpMh5bVEQOi82%2FRHJ6oxkg%3D%3D) <br>
 Email: [cavicchioli.adilson@gmail.com](mailto:cavicchioli.adilson@gmail.com)
 
-Sinta-se à vontade para me contatar caso tenha dificuldade em gerar uma chave para testar o programa, para perguntas, sugestões ou colaborações em projetos futuros!
+Sinta-se à vontade para me contatar caso tenha dificuldade em testar o programa, para perguntas, sugestões ou colaborações em projetos futuros!
