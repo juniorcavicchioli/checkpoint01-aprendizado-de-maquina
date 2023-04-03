@@ -1,7 +1,7 @@
 # Checkpoint01 - aprendizado de maquina
 Atividade desenvolvida para a disciplina Disruptive Architectures - IOT, IOB AND IA. Nota recebida: 10/10
 
-Tecnologias: Python, as bibliotecas Seaborn, MatPlotLib, Pandas, Numpy e Scikit-learn.
+Tecnologias: Python, as bibliotecas Seaborn, MatPlotLib, Pandas, Numpy e Scikit-learn bem como a plataforma Google Colab.
 
 Conceitos aplicados: Métodologia CRISP-DM, machine learning, análise, preparação, interpretação e comunicação dos dados bem como o uso dos modelos de regressão `Linear Regressor` e `Random Forest Regressor`.
 
